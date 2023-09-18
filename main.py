@@ -37,13 +37,14 @@ def isNight():
         return True
 
 def sendmail():
-    email = os.getenv("SENDER_MAIL")
+    sender_email = os.getenv("SENDER_MAIL")
+    reciver_email = os.getenv("RECIVER_MAIL")
     password = os.getenv("PASSWORD")
     connection = smtplib.SMTP("smtp.gmail.com", port=587)
     connection.starttls()
-    connection.login(user=email, password=password)
+    connection.login(user=sender_email, password=password)
     msg = "subject:LOOK UP!!!\n\nThe international space station is your overhead!!"
-    connection.sendmail(from_addr=email, to_addrs="sudipkbasu2000@gmail.com", msg=msg)
+    connection.sendmail(from_addr=sender_email, to_addrs=reciver_email, msg=msg)
     print(f"The iss has been spoted & email has been sent at {datetime.now()}")
     connection.close()
 
