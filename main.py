@@ -1,7 +1,11 @@
 import requests
 import smtplib
 import time
+import os
+from dotenv import load_dotenv
 from datetime import datetime
+
+load_dotenv()
 
 MY_LAT = 23.238022
 MY_LONG = 88.709326
@@ -33,8 +37,8 @@ def isNight():
         return True
 
 def sendmail():
-    email = "sbose007ime.work@gmail.com"
-    password = "hofqcmhxejlojqrp"
+    email = os.getenv("SENDER_MAIL")
+    password = os.getenv("PASSWORD")
     connection = smtplib.SMTP("smtp.gmail.com", port=587)
     connection.starttls()
     connection.login(user=email, password=password)
